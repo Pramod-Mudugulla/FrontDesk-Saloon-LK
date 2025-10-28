@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>History</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 24px; }
+      a { text-decoration: none; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f6f6f6; text-align: left; }
+      .nav a { margin-right: 12px; }
+      .pill { display: inline-block; padding: 2px 8px; border-radius: 8px; background: #efefef; }
+    </style>
+  </head>
+  <body>
+    <h1>Resolved/Unresolved Requests</h1>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/requests">Pending</a>
+      <a href="/knowledge">Learned Answers</a>
+    </div>
+
+    {% if items %}
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Question</th>
+        <th>Updated</th>
+        <th>Actions</th>
+      </tr>
+      {% for hr in items %}
+        <tr>
+          <td>{{ hr.id }}</td>
+          <td><span class="pill">{{ hr.status }}</span></td>
+          <td>{{ hr.question }}</td>
+          <td>{{ hr.updated_at }}</td>
+          <td><a href="/requests/{{ hr.id }}">Open</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>No items yet.</p>
+    {% endif %}
+  </body>
+  </html>
+
+

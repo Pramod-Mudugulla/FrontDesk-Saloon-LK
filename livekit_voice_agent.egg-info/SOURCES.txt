@@ -1,0 +1,7 @@
+agent.py
+pyproject.toml
+livekit_voice_agent.egg-info/PKG-INFO
+livekit_voice_agent.egg-info/SOURCES.txt
+livekit_voice_agent.egg-info/dependency_links.txt
+livekit_voice_agent.egg-info/requires.txt
+livekit_voice_agent.egg-info/top_level.txt

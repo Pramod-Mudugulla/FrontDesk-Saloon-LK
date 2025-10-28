@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Learned Answers</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 24px; }
+      a { text-decoration: none; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f6f6f6; text-align: left; }
+      .nav a { margin-right: 12px; }
+      pre { white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>Learned Answers</h1>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/requests">Pending</a>
+      <a href="/history">History</a>
+    </div>
+
+    {% if items %}
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Learned</th>
+      </tr>
+      {% for kb in items %}
+        <tr>
+          <td>{{ kb.id }}</td>
+          <td>{{ kb.question_canonical }}</td>
+          <td><pre>{{ kb.answer }}</pre></td>
+          <td>{{ kb.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>No learned answers yet.</p>
+    {% endif %}
+  </body>
+  </html>
+
+

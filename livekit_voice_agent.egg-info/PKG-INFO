@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: livekit-voice-agent
+Version: 0.1.0
+Requires-Python: >=3.13
+Requires-Dist: livekit-agents[silero,turn-detector]~=1.2
+Requires-Dist: livekit-plugins-noise-cancellation~=0.2
+Requires-Dist: python-dotenv>=1.2.1

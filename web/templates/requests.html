@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Pending Requests</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 24px; }
+      a { text-decoration: none; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f6f6f6; text-align: left; }
+      .nav a { margin-right: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Pending Requests</h1>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/history">History</a>
+      <a href="/knowledge">Learned Answers</a>
+    </div>
+
+    {% if pending %}
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>Timeout</th>
+        <th>Actions</th>
+      </tr>
+      {% for hr in pending %}
+        <tr>
+          <td>{{ hr.id }}</td>
+          <td>{{ hr.question }}</td>
+          <td>{{ hr.timeout_at }}</td>
+          <td><a href="/requests/{{ hr.id }}">Open</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>No pending requests.</p>
+    {% endif %}
+  </body>
+  </html>
+
+

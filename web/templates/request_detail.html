@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Request {{ hr.id }}</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 24px; }
+      a { text-decoration: none; }
+      textarea { width: 100%; min-height: 120px; }
+      .meta { color: #666; }
+      .actions { margin-top: 12px; }
+      .actions button { padding: 8px 12px; }
+      .nav a { margin-right: 12px; }
+      .pill { display: inline-block; padding: 2px 8px; border-radius: 8px; background: #efefef; }
+    </style>
+  </head>
+  <body>
+    <h1>Request #{{ hr.id }}</h1>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/requests">Pending</a>
+      <a href="/history">History</a>
+      <a href="/knowledge">Learned Answers</a>
+    </div>
+
+    <p><strong>Status:</strong> <span class="pill">{{ hr.status }}</span></p>
+    <p><strong>Question:</strong> {{ hr.question }}</p>
+    {% if hr.timeout_at %}
+      <p class="meta">Timeout at: {{ hr.timeout_at }}</p>
+    {% endif %}
+
+    {% if hr.status == 'pending' %}
+      <form method="post" action="/requests/{{ hr.id }}/resolve">
+        <label>Supervisor Answer</label>
+        <textarea name="answer" required></textarea>
+        <div>
+          <label>Supervisor ID (optional)</label>
+          <input type="text" name="supervisor_id" />
+        </div>
+        <div class="actions">
+          <button type="submit">Resolve</button>
+        </div>
+      </form>
+      <form method="post" action="/requests/{{ hr.id }}/unresolved" class="actions">
+        <button type="submit">Mark Unresolved</button>
+      </form>
+    {% else %}
+      {% if hr.resolved_answer %}
+        <h3>Resolved Answer</h3>
+        <pre>{{ hr.resolved_answer }}</pre>
+      {% endif %}
+    {% endif %}
+  </body>
+  </html>
+
+
